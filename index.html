@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Weather App</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <header>
+    <!-- place navbar here -->
+</header>
+<main>
+      <h1 class="text-white fw-bold text-center mb-5">Weather App</h1>
+
+  
+<div class="container" id="app">
+    <div class="weather-side" v-if="showSuccessAlert">
+      <div class="weather-gradient"></div>
+      <div class="date-container">
+        <h2 class="date-dayname">{{dayOfWeek}}</h2><span class="date-day">{{dateofyear}} {{monthofyear}} {{year}}  </span><span class="location">{{location.name}}, {{location.country}}</span>
+      </div>
+      <div class="weather-container"><i class="weather-icon" ></i>
+        <h1 class="weather-temp">{{output.temp_c}}°C</h1>
+        <h3 class="weather-desc">{{output.condition.text}}</h3>
+      </div>
+    </div>
+    <div v-if="showSuccessAlert" class="info-side">
+      <div class="today-info-container">
+        <div class="today-info">
+          <div class="precipitation"> <span class="title">Pressure</span><span class="value">{{output.pressure_in}} in</span>
+            <div class="clear"></div>
+          </div>
+          <div class="humidity"> <span class="title">HUMIDITY</span><span class="value">{{output.humidity}} %</span>
+            <div class="clear"></div>
+          </div>
+          <div class="wind"> <span class="title">WIND</span><span class="value">{{output.wind_kph}} km/h</span>
+            <div class="clear"></div>
+          </div>
+        </div>
+      </div>
+      <div class="week-container">
+        <ul class="week-list">
+          
+          <li v-for="days in forecaste" :key="days"><span class="day-name">{{getDayOfWeek(days.date)}}</span><span class="day-temp">{{days.day.avgtemp_c}}°C</span></li>
+          
+          <div class="clear"></div>
+        </ul>
+      </div>
+      <div class="location-container">
+        <small class="">Enter address</small>
+        <input type="text" @keydown.enter="calculate"
+        class="form-control my-2  " v-model="input" name="" id="" aria-describedby="helpId" placeholder="">
+       
+        <button @click="calculate"  class="location-button"> <i data-feather="map-pin"></i><span>Change location</span></button>
+      </div>
+    </div>
+  </div>
+
+  </main>
+  <footer>
+    <!-- place footer here -->
+  </footer>
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+   <!-- Vue js 3 -->
+   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+ 
+   <script src="./script.js"></script>
+</body>
+
+</html>
